@@ -11,15 +11,18 @@ resource "azurerm_virtual_network" "app_network" {
 }
 
 
-resource "azurerm_subnet" "app_network_subnets" {
-  for_each = {
-    websubnet01 = "10.0.0.0/24"
-    appsubnet01 = "10.0.1.0/24"
-  }
-  name                 = each.key
+resource "azurerm_subnet" "websubnet01" {
+  name                 = local.subnets[0].name
   resource_group_name  = azurerm_resource_group.appgrp.name
   virtual_network_name = azurerm_virtual_network.app_network.name
-  address_prefixes     = each.value
+  address_prefixes     = local.subnets[0].address_prefixes
+}
+
+resource "azurerm_subnet" "appsubnet01" {
+  name                 = local.subnets[1].name
+  resource_group_name  = azurerm_resource_group.appgrp.name
+  virtual_network_name = azurerm_virtual_network.app_network.name
+  address_prefixes     = local.subnets[1].address_prefixes
 }
 
 resource "azurerm_network_interface" "webinterface01" {
@@ -92,6 +95,4 @@ resource "azurerm_subnet_network_security_group_association" "appsubnet01_appnsg
   subnet_id                 = azurerm_subnet.appsubnet01.id
   network_security_group_id = azurerm_network_security_group.app_nsg.id
 }
-
-
 
