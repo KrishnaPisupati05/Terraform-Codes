@@ -1,45 +1,36 @@
-resource "azurerm_resource_group" "appgrp" {
-  name     = "app-grp"
+# Define a Resource Group
+resource "azurerm_resource_group" "app-rsg" {
+  name     = "app-rsg"
   location = local.resource_location
 }
 
-resource "azurerm_service_plan" "serviceplan" {
-  for_each = var.webapp_environment.production.serviceplan
-  name                = each.key
-  resource_group_name = azurerm_resource_group.appgrp.name
-  location            = local.resource_location
-  os_type             = each.value.os_type
-  sku_name            = each.value.sku
-}
+# # Define an App Service Plan
+# resource "azurerm_app_service_plan" "appservice0011" {
+#   name                = "appservice0011"
+#   location            = local.resource_location
+#   resource_group_name = azurerm_resource_group.app-rsg.name
 
-resource "azurerm_windows_web_app" "webapp" {
-  for_each = var.webapp_environment.production.serviceapp
-  name                = each.key
-  resource_group_name = azurerm_resource_group.appgrp.name
-  location            = local.resource_location
-  service_plan_id     = azurerm_service_plan.serviceplan[each.value].id
-  
-  site_config {
-    always_on=false
-     
-    application_stack {
-      current_stack="dotnet"
-      dotnet_version="v8.0"
-  }
-  }  
-}
+#   # Define the pricing tier (Standard in this case)
+#   sku {
+#     tier = "Standard"
+#     size = "S1"
+#   }
+# }
 
+# # Create an Azure Web App
+# resource "azurerm_app_service" "webapp01020304" {
+#   name                = "webapp647362"
+#   location            = local.resource_location
+#   resource_group_name = azurerm_resource_group.app-rsg.name
+#   app_service_plan_id = azurerm_app_service_plan.appservice0011.id
 
+#    # Set httpsOnly setting to true to comply with the policy
+#   https_only = true
 
-
-
-
-
-
-
-
-
-
+#   site_config {
+#     always_on = true
+#   }
+# }
 
 
 # resource "azurerm_virtual_network" "app_network" {
