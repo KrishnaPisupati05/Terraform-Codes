@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Define a Resource Group
 resource "azurerm_resource_group" "app-rsg" {
   name     = "app-rsg"
@@ -9,6 +10,8 @@ resource "azurerm_resource_group" "app-rsg" {
 #   name                = "appservice0011"
 #   location            = local.resource_location
 #   resource_group_name = azurerm_resource_group.app-rsg.name
+=======
+>>>>>>> 66178380b6e9dbaa5240747d21a9f42d3cdc9b5b
 
 #   # Define the pricing tier (Standard in this case)
 #   sku {
