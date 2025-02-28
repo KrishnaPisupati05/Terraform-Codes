@@ -1,9 +1,73 @@
-
-# Define a Resource Group
-resource "azurerm_resource_group" "app-rsg" {
-  name     = "app-rsg"
+resource "azurerm_resource_group" "app-grp" {
+  name     = "app-grp"
   location = local.resource_location
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# resource "azurerm_key_vault"  "keyvault1080" {
+#   name                        = "keyvault1080"
+#   location                    = local.resource_location
+#   resource_group_name         = azurerm_resource_group.app-grp.name
+#   enabled_for_disk_encryption = true
+#   tenant_id                   = var.tenant_id
+#   soft_delete_retention_days  = 7
+#   purge_protection_enabled    = false
+#   sku_name                    = "standard"
+
+#   access_policy {
+#     tenant_id = var.tenant_id
+#     object_id = var.object_id
+
+#     key_permissions = ["Get", "Create", "Delete", "List", "GetRotationPolicy"]
+#     secret_permissions = ["Get", "Set", "Delete", "List"]
+#     storage_permissions = ["Get", "List"]
+#   }
+# }
+
+# resource "azurerm_key_vault_secret" "secret01" {
+#   name =  "secret01"
+#   value =   var.my_secret
+#   key_vault_id = azurerm_key_vault.keyvault1080.id
+# }
+
+# resource "azurerm_key_vault_key" "key01" {
+#   name = "key01"
+#   key_vault_id = azurerm_key_vault.keyvault1080.id
+  
+#   key_type = "RSA"
+#   key_size = "2048"
+
+#  key_opts = [
+#     "encrypt",
+#     "decrypt",
+#     "sign",
+#     "verify",
+#     "wrapKey",
+#     "unwrapKey"
+#   ]
+# }
+
 
 # # Define an App Service Plan
 # resource "azurerm_app_service_plan" "appservice0011" {
