@@ -1,5 +1,34 @@
 locals {
-  resource_location = "Central India"
+  resource_location = "East Asia"
+
+  virtual_network= {
+  name  = "app-net"
+  address_prefixes = ["10.0.0.0/16"]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   # virtual_network={
   #   name="app-network"
   #   address_prefixes=["10.0.0.0/16"]
