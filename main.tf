@@ -14,14 +14,59 @@ resource "azurerm_resource_group" "app-grp" {
 
 
 
+//---------FunctionApp------------
+
+# resource "azurerm_storage_account" "mystorage1010" {
+#   name = "mystorage34623"
+#   location = local.resource_location
+#   resource_group_name = azurerm_resource_group.app-grp.name
+#   account_tier = "Standard"
+#   account_replication_type = "LRS"
+# }
+
+# resource "azurerm_app_service_plan" "myplan1010" {
+#   name = "myplan1010"
+#   location = local.resource_location
+#   resource_group_name = azurerm_resource_group.app-grp.name
+#   kind = "FunctionApp"
+#   sku {
+#     size = "Y1"
+#     tier = "Dynamic"
+#   }
+#   }
+
+#   resource "azurerm_function_app" "myfuncapp1010" {
+#     name = "myfuncapp1010"
+#     location = local.resource_location
+#     resource_group_name = azurerm_resource_group.app-grp.name
+#     app_service_plan_id = azurerm_app_service_plan.myplan1010.id
+#     storage_account_name = azurerm_storage_account.mystorage1010.name
+#     storage_account_access_key = azurerm_storage_account.mystorage1010.primary_access_key
+
+  
+#     https_only = true
+
+#   app_settings = {
+#     "FUNCTIONS_WORKER_RUNTIME" = "node" 
+#     "FUNCTIONS_EXTENSION_VERSION" = "~3"  
+    
+#   }
+#   }
+
+
+//--------static-web-app------------
+
+
+# resource "azurerm_static_web_app" "staticapp2909" {
+#   name = "staticapp2909"
+#   resource_group_name = azurerm_resource_group.app-grp.name
+#   location = local.resource_location 
+# }
 
 
 
 
-
-
-
-
+//--------azure-keyvault------
 
 
 
@@ -45,6 +90,7 @@ resource "azurerm_resource_group" "app-grp" {
 #   }
 # }
 
+
 # resource "azurerm_key_vault_secret" "secret01" {
 #   name =  "secret01"
 #   value =   var.my_secret
@@ -67,6 +113,9 @@ resource "azurerm_resource_group" "app-grp" {
 #     "unwrapKey"
 #   ]
 # }
+
+
+//----------azure-webapp-----------
 
 
 # # Define an App Service Plan
@@ -96,6 +145,11 @@ resource "azurerm_resource_group" "app-grp" {
 #     always_on = true
 #   }
 # }
+
+
+
+
+//-----------V-net--------------
 
 
 # resource "azurerm_virtual_network" "app_network" {
