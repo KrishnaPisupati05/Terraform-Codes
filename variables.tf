@@ -14,3 +14,19 @@ variable "my_secret" {
     type = string
   
 }
+
+variable "administrator_login" {
+    description = "login id"
+    type = string  
+}
+
+variable "administrator_login_password" {
+    description = "password"
+    type = string  
+}
+
+variable "repository_token" {
+    description = "token"
+    type = string
+  
+}

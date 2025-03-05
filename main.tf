@@ -1,16 +1,30 @@
-resource "azurerm_resource_group" "app-grp" {
-  name     = "app-grp"
-  location = local.resource_location
-}
+# resource "azurerm_resource_group" "app-grp" {
+#   name     = "app-grp"
+#   location = local.resource_location
+# }
 
 
 
 
 
+# ------>> PostgreSQL-------
 
+# resource "azurerm_postgresql_flexible_server" "myserver1234" {
+#   name                            = "server0203"
+#   resource_group_name             = azurerm_resource_group.app-grp.name
+#   location                        = local.resource_location
+#   version                         = "13"  # You can specify version 11, 12, or 13
+#  sku_name                         = "GP_Standard_D2s_v3" # Adjust as needed
+#   storage_mb                      = 32768  # 5GB
+#   backup_retention_days           = 7
+#   administrator_login             = var.administrator_login
+#   administrator_password          = var.administrator_login_password
+# }
 
-
-
+# resource "azurerm_postgresql_flexible_server_database" "mydb" {
+#   name = "mydb"
+#   server_id = azurerm_postgresql_flexible_server.myserver1234.id
+# }
 
 
 
@@ -60,8 +74,14 @@ resource "azurerm_resource_group" "app-grp" {
 # resource "azurerm_static_web_app" "staticapp2909" {
 #   name = "staticapp2909"
 #   resource_group_name = azurerm_resource_group.app-grp.name
-#   location = local.resource_location 
+#   location = local.resource_location
+#   sku_tier = "Free"
+#   sku_size = "Free"
+#   repository_branch = "main"
+#   repository_url = "https://github.com/KrishnaPisupati05/node-project.git"
+#   repository_token = var.repository_token
 # }
+
 
 
 
